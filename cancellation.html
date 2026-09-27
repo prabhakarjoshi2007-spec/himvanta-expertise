@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cancellation Policy | Himvanta Expertise</title>
+
+    <link rel="icon" type="image/jpeg" href="assets/LOGO.jpeg">
+    <link rel="apple-touch-icon" href="assets/LOGO.jpeg">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap"
+          rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #132238;
+            --primary-light: #1e3a5f;
+            --snow: #e8f4f8;
+            --snow-light: #f0f7fa;
+            --text: #334155;
+            --muted: #64748b;
+            --white: #ffffff;
+            --border: #dbe7ed;
+            --warning-bg: #fff7ed;
+            --warning-border: #fed7aa;
+            --warning-text: #c2410c;
+            --shadow: 0 15px 45px rgba(19, 34, 56, 0.08);
+            --font-main: 'Inter', sans-serif;
+            --font-heading: 'Playfair Display', serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            line-height: 1.8;
+            color: var(--text);
+            background: var(--snow-light);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        nav {
+            height: 78px;
+            background: rgba(255, 255, 255, 0.98);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+            box-shadow: 0 2px 18px rgba(19, 34, 56, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--primary);
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: -0.3px;
+        }
+
+        .brand i {
+            color: var(--primary-light);
+            font-size: 1.25rem;
+        }
+
+        .back-home {
+            text-decoration: none;
+            color: var(--primary);
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            transition: 0.3s ease;
+        }
+
+        .back-home:hover {
+            color: var(--primary-light);
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .header {
+            padding: 85px 0;
+            text-align: center;
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--primary),
+                    var(--primary-light)
+                );
+            color: var(--white);
+            border-radius: 0 0 45px 45px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: "";
+            position: absolute;
+            width: 320px;
+            height: 320px;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 50%;
+            top: -150px;
+            right: -80px;
+        }
+
+        .header::after {
+            content: "";
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 50%;
+            bottom: -140px;
+            left: -80px;
+        }
+
+        .header .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .header-kicker {
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: #bcd7e5;
+            margin-bottom: 12px;
+        }
+
+        .header h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            line-height: 1.2;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .header h1 span {
+            color: #cfe5ef;
+        }
+
+        .header p {
+            max-width: 600px;
+            margin: 0 auto;
+            color: rgba(255,255,255,0.82);
+            font-size: 1rem;
+        }
+
+        /* =========================
+           CONTENT
+        ========================= */
+
+        main {
+            position: relative;
+        }
+
+        .content-wrap {
+            margin: 50px 0;
+            background: var(--white);
+            padding: 50px;
+            border-radius: 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(19, 34, 56, 0.04);
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section h2 {
+            color: var(--primary);
+            font-family: var(--font-heading);
+            font-size: 1.45rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            padding-left: 17px;
+            border-left: 5px solid var(--primary-light);
+        }
+
+        .section p {
+            color: var(--text);
+            font-size: 0.97rem;
+        }
+
+        /* =========================
+           LIST
+        ========================= */
+
+        .list {
+            list-style: none;
+            margin-top: 12px;
+        }
+
+        .list li {
+            margin-bottom: 15px;
+            display: flex;
+            gap: 13px;
+            align-items: flex-start;
+            color: var(--text);
+            font-size: 0.96rem;
+        }
+
+        .list li i {
+            color: var(--primary-light);
+            margin-top: 7px;
+            font-size: 0.85rem;
+            min-width: 16px;
+        }
+
+        .list strong {
+            color: var(--primary);
+        }
+
+        /* =========================
+           WARNING BOX
+        ========================= */
+
+        .warning-box {
+            background: var(--warning-bg);
+            border: 1px solid var(--warning-border);
+            padding: 28px;
+            border-radius: 22px;
+            border-left: 6px solid #f97316;
+            margin: 35px 0;
+        }
+
+        .warning-box h4 {
+            color: var(--warning-text);
+            margin-bottom: 8px;
+            font-size: 1rem;
+            font-weight: 800;
+        }
+
+        .warning-box h4 i {
+            margin-right: 7px;
+        }
+
+        .warning-box p {
+            color: #7c4a24;
+            font-size: 0.94rem;
+        }
+
+        .warning-box strong {
+            color: var(--warning-text);
+        }
+
+        /* =========================
+           CONTACT BOX
+        ========================= */
+
+        .contact-box {
+            background: var(--primary);
+            color: var(--white);
+            padding: 32px 25px;
+            border-radius: 22px;
+            text-align: center;
+            margin-top: 45px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-box::before {
+            content: "";
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 50%;
+            right: -60px;
+            top: -90px;
+        }
+
+        .contact-box p {
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .contact-phone {
+            color: #d6eaf2;
+            font-weight: 800;
+            font-size: 1.15rem;
+            margin-top: 5px;
+        }
+
+        .contact-phone a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .contact-email {
+            color: rgba(255,255,255,0.82);
+            font-size: 0.92rem;
+            margin-top: 5px;
+        }
+
+        .contact-email a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .contact-location {
+            color: rgba(255,255,255,0.65);
+            font-size: 0.82rem;
+            margin-top: 10px;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            text-align: center;
+            padding: 45px 20px;
+            color: #8292a3;
+            font-size: 0.82rem;
+            line-height: 1.8;
+        }
+
+        footer strong {
+            color: var(--primary);
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 768px) {
+
+            nav {
+                height: 70px;
+                padding: 0 20px;
+            }
+
+            .brand {
+                font-size: 1.15rem;
+            }
+
+            .back-home {
+                font-size: 0.75rem;
+            }
+
+            .header {
+                padding: 65px 0;
+                border-radius: 0 0 30px 30px;
+            }
+
+            .header h1 {
+                font-size: 2.2rem;
+            }
+
+            .header p {
+                font-size: 0.92rem;
+                padding: 0 10px;
+            }
+
+            .content-wrap {
+                margin: 30px 0;
+                padding: 30px 22px;
+                border-radius: 22px;
+            }
+
+            .section {
+                margin-bottom: 32px;
+            }
+
+            .section h2 {
+                font-size: 1.25rem;
+            }
+
+            .section p,
+            .list li {
+                font-size: 0.92rem;
+            }
+
+            .warning-box {
+                padding: 22px 18px;
+                border-radius: 18px;
+            }
+
+            .contact-box {
+                padding: 28px 18px;
+                border-radius: 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            .container {
+                padding: 0 15px;
+            }
+
+            nav {
+                padding: 0 15px;
+            }
+
+            .brand {
+                font-size: 1rem;
+            }
+
+            .brand i {
+                font-size: 1rem;
+            }
+
+            .back-home {
+                font-size: 0.68rem;
+            }
+
+            .header {
+                padding: 55px 0;
+            }
+
+            .header h1 {
+                font-size: 1.9rem;
+            }
+
+            .header-kicker {
+                font-size: 0.62rem;
+                letter-spacing: 2px;
+            }
+
+            .content-wrap {
+                padding: 25px 18px;
+                margin: 22px 0;
+            }
+
+            .section h2 {
+                font-size: 1.15rem;
+            }
+
+            .list li {
+                gap: 9px;
+            }
+
+            .contact-phone {
+                font-size: 1rem;
+            }
+
+            footer {
+                padding: 35px 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<nav>
+    <a href="index.html" class="brand">
+        <i class="fas fa-mountain"></i>
+        Himvanta Expertise
+    </a>
+
+    <a href="index.html" class="back-home">
+        BACK HOME
+    </a>
+</nav>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="header">
+
+    <div class="container">
+
+        <div class="header-kicker">
+            Travel • Tourism • Adventure
+        </div>
+
+        <h1>
+            Cancellation <span>Policy</span>
+        </h1>
+
+        <p>
+            Your guide to rescheduling and cancellations.
+        </p>
+
+    </div>
+
+</header>
+
+
+<!-- =========================
+     MAIN CONTENT
+========================= -->
+
+<main class="container">
+
+    <div class="content-wrap">
+
+
+        <!-- SECTION 1 -->
+
+        <div class="section">
+
+            <h2>
+                1. Cancellation Process
+            </h2>
+
+            <p>
+                If you wish to cancel your trek, please notify us via your
+                registered email or WhatsApp. The date of your message/email
+                will be considered as the formal cancellation date.
+            </p>
+
+        </div>
+
+
+        <!-- SECTION 2 -->
+
+        <div class="section">
+
+            <h2>
+                2. Cancellation Terms
+            </h2>
+
+            <ul class="list">
+
+                <li>
+                    <i class="fas fa-info-circle"></i>
+
+                    <span>
+                        <strong>Advance Amount:</strong>
+                        The booking advance is non-refundable and will be
+                        forfeited upon cancellation.
+                    </span>
+                </li>
+
+                <li>
+                    <i class="fas fa-info-circle"></i>
+
+                    <span>
+                        <strong>No-Show:</strong>
+                        If a trekker fails to arrive at the specified time
+                        and location, it will be treated as a last-minute
+                        cancellation with 0% refund.
+                    </span>
+                </li>
+
+                <li>
+                    <i class="fas fa-info-circle"></i>
+
+                    <span>
+                        <strong>Unused Services:</strong>
+                        No partial refunds will be given for unused meals,
+                        transport, or accommodation during the trip.
+                    </span>
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <!-- WARNING -->
+
+        <div class="warning-box">
+
+            <h4>
+                <i class="fas fa-exclamation-triangle"></i>
+                Natural &amp; Forced Circumstances
+            </h4>
+
+            <p>
+                Himvanta Expertise shall not be liable for cancellations
+                due to landslides, heavy snow, roadblocks, or government
+                orders. In such cases, we offer
+                <strong>No Refund</strong>, but we may help you with
+                rescheduling (subject to availability and extra costs).
+            </p>
+
+        </div>
+
+
+        <!-- SECTION 3 -->
+
+        <div class="section">
+
+            <h2>
+                3. Rescheduling Policy
+            </h2>
+
+            <p>
+                We understand plans change. Instead of cancelling, you can
+                request a reschedule:
+            </p>
+
+            <ul class="list">
+
+                <li>
+                    <i class="fas fa-calendar-alt"></i>
+
+                    <span>
+                        Rescheduling requests must be made at least
+                        10 days before the trip.
+                    </span>
+                </li>
+
+                <li>
+                    <i class="fas fa-exchange-alt"></i>
+
+                    <span>
+                        A rescheduling fee may apply based on the trek
+                        and logistics already arranged.
+                    </span>
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <!-- CONTACT -->
+
+        <div class="contact-box">
+
+            <p class="contact-title">
+                Contact us for Cancellation Requests:
+            </p>
+
+            <p class="contact-phone">
+                <a href="tel:+917895337166">
+                    +91 78953 37166
+                </a>
+            </p>
+
+            <p class="contact-phone">
+                <a href="tel:+917409931670">
+                    +91 74099 31670
+                </a>
+            </p>
+
+            <p class="contact-phone">
+                <a href="tel:+918126139669">
+                    +91 81261 39669
+                </a>
+            </p>
+
+            <p class="contact-email">
+                <a href="mailto:himvantaexpertise@gmail.com">
+                    himvantaexpertise@gmail.com
+                </a>
+            </p>
+
+            <p class="contact-location">
+                Srinagar Garhwal · Uttarakhand · India
+            </p>
+
+        </div>
+
+
+    </div>
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    © 2026 <strong>Himvanta Expertise</strong>.
+    All rights reserved.
+    <br>
+
+    Srinagar Garhwal · Uttarakhand · India
+
+</footer>
+
+
+</body>
+</html>

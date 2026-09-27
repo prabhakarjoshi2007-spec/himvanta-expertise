@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Story | Himvanta Expertise - Himalayan Trekking from Srinagar Garhwal</title>
+        <link rel="icon" type="image/jpeg" href="assets/LOGO.jpeg">
+    <link rel="apple-touch-icon" href="assets/LOGO.jpeg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+    <style>
+        /* ==========================================
+           1. MASTER RESET & VARIABLES
+           ========================================== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --p-gold: #e8f4f8;
+            --p-navy: #132238;
+            --p-white: #ffffff;
+            --p-glow: rgba(255, 184, 0, 0.4);
+            --p-font: 'Inter', sans-serif; --heading-font:'Playfair Display', serif;
+        }
+        body { font-family: var(--p-font); line-height: 1.6; color: var(--p-navy); overflow-x: hidden; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; width: 100%; }
+
+        /* ==========================================
+           2. NAVIGATION (SOLID ON MOBILE)
+           ========================================== */
+        nav#navbar {
+            position: fixed; top: 0; width: 100%; height: 90px;
+            display: flex; align-items: center; z-index: 1000;
+            transition: 0.4s ease; background: transparent;
+        }
+        nav#navbar.scrolled { background: var(--p-navy); height: 75px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        
+        .nav-container { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+        .logo-wrapper { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .logo-circle { width: 50px; height: 50px; border-radius: 50%; overflow: hidden; border: 2px solid var(--p-gold); }
+        .logo-circle img { width: 100%; height: 100%; object-fit: cover; }
+        .brand-name { color: #fff; font-weight: 800; font-size: 1.4rem; }
+        .brand-name span { color: var(--p-gold); }
+
+        .nav-links { display: flex; list-style: none; gap: 30px; align-items: center; }
+        .nav-links a { text-decoration: none; color: #fff; font-weight: 600; font-size: 0.95rem; transition: 0.3s; }
+        .nav-links a:hover { color: var(--p-gold); }
+        .nav-cta-gold { background: var(--p-gold); color: var(--p-navy) !important; padding: 10px 22px; border-radius: 50px; font-weight: 800 !important; }
+
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 100000; }
+        .hamburger .line { width: 28px; height: 3px; background: #fff; border-radius: 10px; transition: 0.3s; }
+
+        /* ==========================================
+           3. HERO & STORY SECTION
+           ========================================== */
+        .about-hero {
+            height: 85vh; min-height: 600px;
+            background: linear-gradient(rgba(30, 30, 45, 0.5), rgba(30, 30, 45, 0.7)), 
+                        url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1500&q=80');
+            background-size: cover; background-position: center; background-attachment: fixed;
+            display: flex; align-items: center; justify-content: center; text-align: center; color: #fff;
+        }
+        .hero-content h1 { font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 900; line-height: 1.1; margin-bottom: 15px; }
+        .hero-content .highlight { color: var(--p-gold); text-shadow: 0 0 30px var(--p-glow); }
+
+        .story-section { padding: 120px 0; background: #fff; }
+        .story-flex { display: flex; align-items: center; gap: 80px; }
+        .story-image { flex: 1; position: relative; }
+        .story-image img { width: 100%; border-radius: 30px; box-shadow: 0 30px 60px rgba(0,0,0,0.1); }
+        .story-text { flex: 1.2; }
+        .story-text h2 { font-size: 3rem; margin-bottom: 25px; color: var(--p-navy); font-weight: 800; }
+        .stats-row { display: flex; gap: 40px; margin-top: 40px; }
+        .stat-item h3 { font-size: 2.5rem; color: var(--p-black); font-weight: 900; }
+
+       /* ==========================================
+   4. VALUES SECTION
+   ========================================== */
+.values-section { 
+    padding: 100px 0; 
+    background: #f9f9f9; 
+    text-align: center; 
+}
+
+.values-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 30px; 
+}
+
+.value-card { 
+    background: #ffffff; /* Set to white to match your screenshot */
+    padding: 50px 35px; 
+    border-radius: 25px; 
+    transition: 0.4s; 
+    border: 1px solid #eee; 
+}
+
+/* Permanent black text for titles and paragraphs */
+.value-card h3,
+.value-card p {
+    color: #000000 !important;
+}
+
+.value-card i { 
+    font-size: 3.5rem; 
+    color: var(--p-navy); 
+    margin-bottom: 25px; 
+    transition: 0.4s; 
+}
+
+.value-card:hover { 
+    transform: translateY(-15px); 
+    border-color: var(--p-gold); 
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08); 
+}
+
+.value-card:hover i { 
+    color: var(--p-navy); 
+    transform: scale(1.1); 
+}
+        /* ==========================================
+           5. MOBILE PATCH
+           ========================================== */
+        @media (max-width: 850px) {
+            nav#navbar, nav#navbar.scrolled { background: #fff !important; height: 75px !important; position: fixed !important; box-shadow: 0 2px 15px rgba(0,0,0,0.1) !important; }
+            .brand-name, .brand-name span, .nav-links a { color: var(--p-navy) !important; }
+            .hamburger { display: flex !important; }
+            .hamburger .line { background: var(--p-navy) !important; }
+            .nav-links {
+                position: fixed; top: 75px; right: -100%; width: 85%; height: 100vh;
+                background: #fff; flex-direction: column; padding-top: 50px; transition: 0.4s;
+            }
+            .nav-links.active { right: 0; }
+            .story-flex { flex-direction: column; text-align: center; }
+            .about-hero { height: 60vh; margin-top: 0; }
+        }
+
+       /* FOOTER */
+        .main-footer { background: #132238; color: #ffffff; padding: 80px 0 0; margin-top: 100px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 50px; margin-bottom: 60px; }
+        .footer-col h4 { color: #e8f4f8; font-size: 1.2rem; margin-bottom: 25px; position: relative; padding-bottom: 10px; }
+        .footer-col h4::after { content: ''; position: absolute; left: 0; bottom: 0; width: 30px; height: 2px; background: #e8f4f8; }
+        .footer-links { list-style: none; }
+        .footer-links a { color: #ccc; text-decoration: none; transition: 0.3s; font-size: 0.95rem; display: block; margin-bottom: 12px; }
+        .footer-links a:hover { color: #e8f4f8; padding-left: 8px; }
+        .social-links { display: flex; gap: 15px; margin-top: 25px; }
+        .social-links a { width: 45px; height: 45px; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; border-radius: 50%; color: #fff; transition: 0.3s; border: 1px solid rgba(255,255,255,0.1); }
+        .social-links a:hover { background: #e8f4f8; color: #132238; transform: translateY(-5px); }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.05); padding: 30px 0; }
+        .bottom-flex { display: flex; justify-content: space-between; align-items: center; color: #777; font-size: 0.85rem; }
+   /* ==========================================
+   MINIMALIST TEAM - "FACES BEHIND THE PEAKS"
+   ========================================== */
+.team-section {
+    padding: 80px 0;
+    background: #ffffff;
+}
+
+.team-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-top: 50px;
+}
+
+.team-card {
+    text-align: center;
+    width: 200px; /* Chota width taaki compact lage */
+}
+
+.team-circle-box {
+    width: 150px; /* Compact Circle Size */
+    height: 150px;
+    margin: 0 auto 20px;
+    position: relative;
+    border-radius: 50%;
+    padding: 5px;
+    border: 2px solid #f0f0f0; /* Subtle Border */
+    transition: all 0.4s ease;
+}
+
+.team-card:hover .team-circle-box {
+    border-color: var(--p-gold);
+    transform: translateY(-5px);
+}
+
+.team-circle-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    filter: grayscale(100%); /* Pehle BW lagega premium vibe ke liye */
+    transition: 0.4s ease;
+}
+
+.team-card:hover img {
+    filter: grayscale(0%); /* Hover pe colorful */
+}
+
+.team-info h3 {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--p-navy);
+    margin-bottom: 5px;
+}
+
+.team-info p {
+    font-size: 0.8rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+/* Mobile Alignment */
+@media (max-width: 600px) {
+    .team-grid { gap: 30px; }
+    .team-circle-box { width: 130px; height: 130px; }
+}
+/* WHATSAPP FLOATING BUTTON STYLING */
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 65px;
+    height: 65px;
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 32px;
+    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Bounce & Rotate Effect on Hover */
+.whatsapp-float:hover {
+    transform: scale(1.15) rotate(15deg);
+    background-color: #128c7e;
+    box-shadow: 0 15px 30px rgba(18, 140, 126, 0.5);
+}
+
+/* Message Tooltip (Desktop Only) */
+.whatsapp-float::before {
+    content: "Need Help? Chat with us!";
+    position: absolute;
+    right: 85px;
+    background: #1E1E2D; /* Dark Theme */
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.whatsapp-float:hover::before {
+    opacity: 1;
+    visibility: visible;
+    right: 75px;
+}
+
+/* Pulse Animation for attention */
+@keyframes whatsapp-pulse {
+    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+.whatsapp-float {
+    animation: whatsapp-pulse 2s infinite;
+}
+
+/* Responsive Fix for Mobile */
+@media (max-width: 768px) {
+    .whatsapp-float { 
+        bottom: 25px; 
+        right: 25px; 
+        width: 55px; 
+        height: 55px; 
+        font-size: 28px;
+    }
+    .whatsapp-float::before { display: none; } /* Hide tooltip on mobile to save space */
+}
+    </style>
+<style>h1,h2,h3,h4{font-family:var(--heading-font)}.eyebrow{display:inline-block;padding:8px 15px;border:1px solid rgba(232,244,248,.35);border-radius:999px;background:rgba(232,244,248,.1);text-transform:uppercase;letter-spacing:.14em;font-size:.72rem;font-weight:800;margin-bottom:18px}.section-kicker{color:#1e3a5f;text-transform:uppercase;letter-spacing:.16em;font-size:.75rem;font-weight:800;margin-bottom:10px;text-align:center}.about-hero{background:linear-gradient(rgba(19,34,56,.72),rgba(30,58,95,.62)),url("https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1800&q=85");background-size:cover;background-position:center}.values-section{background:#f0f7fa}.value-card{box-shadow:0 15px 40px rgba(19,34,56,.06);border-color:#dfeaf0}.value-card:hover{border-color:#1e3a5f;box-shadow:0 20px 45px rgba(19,34,56,.1)}</style></head>
+<body>
+<a href="https://wa.me/917895337166?text=Hi%20Himvanta%20Expertise%2C%20I%20want%20to%20inquire%20about%20your%20treks." 
+   class="whatsapp-float" 
+   target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
+<nav id="navbar">
+    <div class="container nav-container">
+        <a href="index.html" class="logo-wrapper">
+            <div class="logo-circle"><img src="assets/LOGO.jpeg" alt="Himvanta Expertise"></div>
+            <span class="brand-name">Himvanta <span>Expertise</span></span>
+        </a>
+        <ul class="nav-links" id="mainMenu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="packages.html">Packages</a></li>
+            <li><a href="about.html">Our Story</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="blogs.html">Stories</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="tel:+918057608837" class="nav-cta-gold">Call Us</a></li>
+        </ul>
+        <div class="hamburger" id="navTrigger" onclick="togglePeaksMenu()">
+            <div class="line"></div><div class="line"></div><div class="line"></div>
+        </div>
+    </div>
+</nav>
+
+<header class="about-hero">
+    <div class="hero-content">
+        <h1>Rooted in the <span class="highlight">Himalayas</span></h1>
+        <p>Expert-guided Himalayan treks built around local knowledge, safety and responsible mountain travel.</p>
+    </div>
+</header>
+
+<section class="story-section">
+    <div class="container">
+        <div class="story-flex">
+            <div class="story-image"><img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQNSV-GLJw55IoQI2lYGRfkyvHEMwVABd3jbZkSc-XVi6cuy9eCg6Lrh2Ebv4j6" alt="Srinagar Garhwal"></div>
+            <div class="story-text">
+                <h2>The Himvanta Expertise Story</h2>
+                <p><strong>Himvanta Expertise</strong>  is a passionate travel venture founded by a dynamic group of students from HNBGU, Srinagar Garhwal. Driven by an intimate knowledge of the Himalayas and a love for exploration, we curate immersive, authentic, and safe tour and travel experiences across Uttarakhand. From adrenaline-fueled treks to peaceful mountain getaways, we blend youthful energy with local expertise to show you the true heart of Devbhoomi.</p>
+                <div class="stats-row">
+                    <div class="stat-item"><h3 color="">8</h3><p>Years Guiding</p></div>
+                    <div class="stat-item"><h3>200+</h3><p>Happy Trekkers</p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="values-section"><div class="container"><p class="section-kicker">Our Approach</p><h2 class="section-title">What We Stand For</h2><div class="values-grid"><div class="value-card"><i class="fas fa-users"></i><h3>Small Groups Only</h3><p>Maximum group size of 20 for a more personal trail experience.</p></div><div class="value-card"><i class="fas fa-compass"></i><h3>Local, Not Packaged</h3><p>Experiences shaped around local Himalayan knowledge.</p></div><div class="value-card"><i class="fas fa-kit-medical"></i><h3>Full Safety Setup</h3><p>Careful preparation and wilderness-first-aid capability.</p></div><div class="value-card"><i class="fas fa-leaf"></i><h3>Leave No Trace</h3><p>Responsible trekking with respect for mountain ecosystems.</p></div></div></div></section>
+<section class="team-section" style="background:#132238;color:#fff"><div class="container"><p class="section-kicker" style="color:#e8f4f8">TRUST & PREPARATION</p><h2 style="text-align:center;color:#fff;font-family:var(--heading-font);font-size:2.5rem;margin-bottom:40px">Built for the Mountain</h2><div class="values-grid"><div class="value-card"><i class="fas fa-mountain"></i><h3 color="black">IMF Certified Guide</h3><p>Professional mountain guidance rooted in Himalayan experience.</p></div><div class="value-card"><i class="fas fa-kit-medical"></i><h3>Wilderness First Aid</h3><p>First-aid preparedness for remote mountain trails.</p></div><div class="value-card"><i class="fas fa-seedling"></i><h3>Local Conservation Partner</h3><p>Responsible travel with respect for the landscapes we explore.</p></div></div></div></section>
+<section class="team-section">
+    <div class="container">
+        <div style="text-align: center;">
+            <p >MEET THE EXPERTS</p>
+            <h2 style="font-size: 2.2rem; font-weight: 900; color:var(--p-navy);">Faces Behind The Himvanta Experties</h2>
+        </div>
+
+        <div class="team-grid">
+            <div class="team-card">
+                <div class="team-circle-box">
+                    <img src="assets/team1.PNG" alt="Team Member" onerror="this.src='https://via.placeholder.com/150x150?text=ITP'">
+                </div>
+                <div class="team-info">
+                    <h3>Abhishek Ratkali</h3>
+                    <p>Founder & Lead Guide</p>
+                </div>
+            </div>
+
+            <div class="team-card">
+                <div class="team-circle-box">
+                    <img src="assets/team2.png" alt="Team Member" onerror="this.src='https://via.placeholder.com/150x150?text=ITP'">
+                </div>
+                <div class="team-info">
+                    <h3>Preetam Farshwan</h3>
+                    <p>Founder & Technical Expedition</p>
+                </div>
+            </div>
+
+            <div class="team-card">
+                <div class="team-circle-box">
+                    <img src="assets/team3.PNG" alt="Team Member" onerror="this.src='https://via.placeholder.com/150x150?text=ITP'">
+                </div>
+                <div class="team-info">
+                    <h3>Abash Bisht</h3>
+                    <p>Founder & Logistics Manager</p>
+                </div>
+            </div>
+        </div><br>
+    </div><footer class="main-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col brand-col">
+                <div class="footer-logo">Himvanta <span>Expertise</span></div>
+                <p>Expert-guided Himalayan treks from Srinagar Garhwal. Local knowledge, thoughtful planning and responsible mountain travel.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/intothepeaks.official" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/@Intothepeaks.official" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Explore</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="packages.html">Trek Packages</a></li>
+                    <li><a href="about.html">About Himvanta Expertise</a></li>
+                    <li><a href="blogs.html">Travel Stories</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul class="footer-links">
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms&condition.html">Terms & Conditions</a></li>
+                    <li><a href="cancellation.html">Cancellation Policy</a></li>
+                    <li><a href="refund.html">Refund Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-col contact-col">
+                <h4>Reach Us</h4>
+                <div class="contact-item"><i class="fas fa-map-marker-alt"></i><p>Srinagar Garhwal · Uttarakhand · India</p></div>
+                <div class="contact-item"><i class="fas fa-phone"></i><p>+91 78953 37166 · +91 74099 31670 · +91 81261 39669 </p></div>
+                <div class="contact-item"><i class="fas fa-envelope"></i><p>himvantaexpertiae@gmail.com</p></div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="bottom-flex">
+                <p class="copyright-text" id="adminTrigger">© 2026 Himvanta Expertise. All rights reserved.</p>
+                <p class="design-credit">Made with ❤️ for the Himalayas</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<script>
+    window.addEventListener('scroll', () => {
+        const nav = document.getElementById('navbar');
+        window.scrollY > 50 ? nav.classList.add('scrolled') : nav.classList.remove('scrolled');
+    });
+    function togglePeaksMenu() {
+        const menu = document.getElementById('mainMenu');
+        menu.classList.toggle('active');
+        document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : 'auto';
+    }
+    document.getElementById('adminTrigger').addEventListener('dblclick', () => {
+        if(prompt("Admin ID:") === "himvantaexpertise@gmail.com" && prompt("Key:") === "Him@2002") {
+            window.location.href = 'admin.html';
+        }
+    });
+</script>
+</body>
+</html>

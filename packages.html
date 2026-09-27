@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Trekking Packages | Himvanta Expertise - Srinagar Garhwal</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+        <link rel="icon" type="image/jpeg" href="assets/LOGO.jpeg">
+    <link rel="apple-touch-icon" href="assets/LOGO.jpeg">
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+    <script>
+      const firebaseConfig = {
+       apiKey: "AIzaSyCI9_ihTfDLfAlzplzLaSl_PF0iMwBKbi8",
+  authDomain: "hemvanta-expertise.firebaseapp.com",
+  databaseURL: "https://hemvanta-expertise-default-rtdb.firebaseio.com",
+  projectId: "hemvanta-expertise",
+  storageBucket: "hemvanta-expertise.firebasestorage.app",
+  messagingSenderId: "1089618695023",
+  appId: "1:1089618695023:web:85d7eb950856cca8820e9a",
+      };
+      if (!firebase.apps.length) { firebase.initializeApp(firebaseConfig); }
+    </script>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --p-blue: #132238;
+            --p-blue-mid: #1a2e4a;
+            --p-blue-light: #1e3a5f;
+            --p-snow: #e8f4f8;
+            --p-navy: #132238;
+            --p-font: 'Inter', sans-serif;
+        }
+        body { font-family: var(--p-font); line-height: 1.6; color: var(--p-navy); background: #fcfcfc; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+         /* NAVIGATION */
+        nav#navbar { position: fixed; top: 0; width: 100%; height: 90px; display: flex; align-items: center; z-index: 1000; transition: 0.4s ease; background: transparent; }
+        nav#navbar.scrolled { background: var(--p-navy); height: 75px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+        .logo-wrapper { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .logo-circle { width: 50px; height: 50px; border-radius: 50%; overflow: hidden; border: 2px solid #e8f4f8; background: #fff; }
+        .logo-circle img { width: 100%; height: 100%; object-fit: cover; }
+        .brand-name { color: #fff; font-weight: 800; font-size: 1.4rem; }
+        .brand-name span { color: var(--p-snow); }
+        .nav-links { display: flex; list-style: none; gap: 30px; align-items: center; }
+        .nav-links a { text-decoration: none; color: #fff; font-weight: 600; font-size: 0.95rem; }
+        .nav-cta-gold { background: var(--p-snow); color: var(--p-navy) !important; padding: 10px 22px; border-radius: 50px; font-weight: 800 !important; }
+
+        /* HEADER */
+        .catalog-header { padding: 150px 0 80px; background: linear-gradient(rgba(30,30,45,0.8), rgba(30,30,45,0.8)), url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1600'); background-size: cover; background-position: center; text-align: center; color: white; }
+        .catalog-header h1 { font-size: 3rem; font-weight: 900; }
+
+        /* SEARCH SECTION */
+        .filter-section { margin-top: -35px; position: relative; z-index: 100; }
+        .filter-card { background: white; padding: 15px; border-radius: 50px; box-shadow: 0 15px 40px rgba(0,0,0,0.1); max-width: 600px; margin: 0 auto; display: flex; align-items: center; }
+        .search-box { flex: 1; display: flex; align-items: center; padding: 0 20px; }
+        .search-box i { color: var(--p-snow); margin-right: 15px; }
+        .search-box input { width: 100%; border: none; outline: none; font-size: 1rem; font-family: inherit; }
+
+        /* PACKAGES GRID - Corrected for app.js rendering */
+        .packages-grid { padding: 60px 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 30px; }
+        
+        /* ITP Cards Design */
+        .package-card { background: white; border-radius: 20px; overflow: hidden; transition: 0.4s; border: 1px solid #eee; display: flex; flex-direction: column; }
+        .package-card:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
+
+        /* MODAL */
+        #bookingModal { position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 9999; display: none; align-items: center; justify-content: center; padding: 20px; }
+        .modal-content { background: white; padding: 30px; border-radius: 25px; width: 100%; max-width: 450px; position: relative; }
+
+        /* ==========================================
+   SUPREME GLOBAL FOOTER (FIXED ALIGNMENT)
+   ========================================== */
+.main-footer {
+    background: #132238; /* Himvanta Deep Blue */
+    color: #ffffff;
+    padding: 80px 0 0;
+    margin-top: 100px;
+    font-family: 'Inter', sans-serif;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 50px;
+    margin-bottom: 60px;
+}
+
+.footer-col h4 {
+    color: #e8f4f8; /* Himvanta Snow Accent */
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-col h4::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: 0;
+    width: 30px; height: 2px;
+    background: #e8f4f8;
+}
+
+.footer-links { list-style: none; }
+.footer-links li { margin-bottom: 15px; }
+.footer-links a { 
+    color: #ccc; 
+    text-decoration: none; 
+    transition: 0.3s; 
+    font-size: 0.95rem; 
+}
+
+.footer-links a:hover { 
+    color: #e8f4f8; 
+    padding-left: 8px; 
+}
+
+.social-links { 
+    display: flex; gap: 15px; margin-top: 25px; 
+}
+
+.social-links a { 
+    width: 45px; height: 45px; 
+    background: rgba(255,255,255,0.05); 
+    display: flex; align-items: center; justify-content: center; 
+    border-radius: 50%; color: #fff; transition: 0.3s; 
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.social-links a:hover { 
+    background: #e8f4f8; 
+    color: #132238; 
+    transform: translateY(-5px); 
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding: 30px 0;
+}
+
+.bottom-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #777;
+    font-size: 0.85rem;
+}
+
+/* Mobile Responsiveness for Footer */
+  @media (max-width: 850px) {
+            nav#navbar, nav#navbar.scrolled { background: #fff !important; height: 75px !important; position: fixed !important; box-shadow: 0 2px 15px rgba(0,0,0,0.1) !important; }
+            .brand-name, .brand-name span, .nav-links a { color: var(--p-navy) !important; }
+            .hamburger { display: flex !important; }
+            .hamburger .line { background: var(--p-navy) !important; }
+            
+            .nav-links {
+                position: fixed; top: 75px; right: -100%; width: 100%; height: 100vh;
+                background: #fff; flex-direction: column; padding: 50px 0; transition: 0.4s;
+                z-index: 1000; gap: 25px;
+            }
+            .nav-links.active { right: 0; }
+            .hero { height: 85vh; background-attachment: scroll; }
+            .hero-action-btns { flex-direction: column; width: 100%; max-width: 300px; margin: 0 auto; }
+            .section-title { font-size: 2.2rem; }
+            .package-grid { grid-template-columns: 1fr; }
+            .bottom-flex { flex-direction: column; gap: 10px; text-align: center; }
+        }
+     .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 100000; }
+        .hamburger .line { width: 28px; height: 3px; background: #fff; border-radius: 10px; transition: 0.3s; }
+/* WHATSAPP FLOATING BUTTON STYLING */
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 65px;
+    height: 65px;
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 32px;
+    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Bounce & Rotate Effect on Hover */
+.whatsapp-float:hover {
+    transform: scale(1.15) rotate(15deg);
+    background-color: #128c7e;
+    box-shadow: 0 15px 30px rgba(18, 140, 126, 0.5);
+}
+
+/* Message Tooltip (Desktop Only) */
+.whatsapp-float::before {
+    content: "Need Help? Chat with us!";
+    position: absolute;
+    right: 85px;
+    background: #132238; /* Dark Theme */
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.whatsapp-float:hover::before {
+    opacity: 1;
+    visibility: visible;
+    right: 75px;
+}
+
+/* Pulse Animation for attention */
+@keyframes whatsapp-pulse {
+    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+.whatsapp-float {
+    animation: whatsapp-pulse 2s infinite;
+}
+
+/* Responsive Fix for Mobile */
+@media (max-width: 768px) {
+    .whatsapp-float { 
+        bottom: 25px; 
+        right: 25px; 
+        width: 55px; 
+        height: 55px; 
+        font-size: 28px;
+    }
+    .whatsapp-float::before { display: none; } /* Hide tooltip on mobile to save space */
+}
+    </style>
+</head>
+<body>
+    <a href="https://wa.me/917895337166?text=Hi! I want to inquire about your services." 
+   class="whatsapp-float" 
+   target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
+<nav id="navbar">
+    <div class="container nav-container">
+        <a href="index.html" class="logo-wrapper">
+            <div class="logo-circle"><img src="assets/LOGO.jpeg" alt="Himvanta Expertise"></div>
+            <span class="brand-name">Himvanta <span>Expertise</span></span>
+        </a>
+        <ul class="nav-links" id="mainMenu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="packages.html">Packages</a></li>
+            <li><a href="about.html">Our Story</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="blogs.html">Stories</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="tel:+917895337166" class="nav-cta-gold">Call Us</a></li>
+        </ul>
+       <div class="hamburger" id="navTrigger" onclick="togglePeaksMenu()">
+            <div class="line"></div><div class="line"></div><div class="line"></div>
+        </div>
+    </div>
+</nav>
+
+<header class="catalog-header">
+    <div class="container">
+        <h1>Himalayan <span style="color:var(--p-snow)">Treks</span></h1>
+        <p>Explore expert-guided trails across the Garhwal Himalayas</p>
+    </div>
+</header>
+
+<main class="container">
+    <section class="filter-section">
+        <div class="filter-card">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="trekSearch" placeholder="Search your next Himalayan trek (e.g. Chopta)..." onkeyup="filterTreks()">
+            </div>
+        </div>
+    </section>
+
+    <div id="journeyDisplay" class="packages-grid">
+        <div style="text-align: center; grid-column: 1/-1; padding: 50px;">
+            <i class="fas fa-mountain fa-spin" style="font-size: 2rem; color: var(--p-snow);"></i>
+            <p style="margin-top: 15px;">Loading adventures...</p>
+        </div>
+    </div>
+</main>
+
+<div id="bookingModal">
+    <div class="modal-content">
+        <span style="position:absolute; top:20px; right:20px; cursor:pointer; font-size:1.5rem;" onclick="closeBooking()">&times;</span>
+        <h2 id="trekTitleModal" style="margin-bottom: 20px;">Book This Trek</h2>
+        <form id="trekBookingForm">
+            <input type="text" id="userName" placeholder="Your Name" required style="width:100%; padding:12px; margin-bottom:15px; border:1px solid #ddd; border-radius:10px;">
+            <input type="tel" id="userPhone" placeholder="WhatsApp Number" required style="width:100%; padding:12px; margin-bottom:15px; border:1px solid #ddd; border-radius:10px;">
+            <input type="number" id="groupSize" placeholder="Group Size" required style="width:100%; padding:12px; margin-bottom:15px; border:1px solid #ddd; border-radius:10px;">
+            <input type="date" id="trekDate" required style="width:100%; padding:12px; margin-bottom:20px; border:1px solid #ddd; border-radius:10px;">
+            <button type="submit" style="width:100%; background:#e8f4f8; color:var(--p-navy); border:none; padding:15px; border-radius:10px; font-weight:800; cursor:pointer;">Confirm on WhatsApp</button>
+        </form>
+    </div>
+</div>
+
+<footer class="main-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div style="font-size: 2rem; font-weight: 800; margin-bottom: 20px;">
+                    Himvanta <span style="color:#e8f4f8;">Expertise</span>
+                </div>
+                <p style="color:#aaa; line-height:1.7;">Expert-guided Himalayan treks from Srinagar Garhwal. Small groups, local expertise, safety-first planning, and responsible travel in the Himalayas.</p>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/@HimvantaExpertise" target="_blank"><i class="fab fa-youtube"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="packages.html">Trek Catalog</a></li>
+                    <li><a href="gallery.html">Photo Archive</a></li>
+                    <li><a href="blogs.html">Trek Diaries</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Our Policies</h4>
+                <ul class="footer-links">
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms & Conditions</a></li>
+                    <li><a href="cancellation.html">Cancellation Policy</a></li>
+                    <li><a href="refund.html">Refund Policy</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>The Basecamp</h4>
+                <p style="color:#aaa; margin-bottom: 15px;">
+                    <i class="fas fa-map-marker-alt" style="color:#e8f4f8; margin-right:10px;"></i>
+                    Srinagar Garhwal · Uttarakhand · India
+                </p>
+                <p style="color:#aaa;">
+                    <i class="fas fa-phone" style="color:#e8f4f8; margin-right:10px;"></i>
+                    +91 78953 37166 · +91 74099 31670 · +91 81261 39669
+                </p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="bottom-flex">
+                <p id="adminTrigger" style="cursor: pointer;">© 2026 Himvanta Expertise. All rights reserved.</p>
+                <p>Made with ❤️ in Srinagar Garhwal</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="js/app.js"></script>
+<script>
+    // Navbar Scroll Effect
+    window.addEventListener('scroll', () => {
+        const nav = document.getElementById('navbar');
+        window.scrollY > 50 ? nav.classList.add('scrolled') : nav.classList.remove('scrolled');
+    });
+
+    // Search Filter Logic
+    function filterTreks() {
+        const input = document.getElementById('trekSearch').value.toLowerCase();
+        const cards = document.getElementsByClassName('package-card');
+        
+        for (let card of cards) {
+            const title = card.querySelector('h3').innerText.toLowerCase();
+            if (title.includes(input)) {
+                card.style.display = "block";
+            } else {
+                card.style.display = "none";
+            }
+        }
+    }
+     function togglePeaksMenu() {
+        const menu = document.getElementById('mainMenu');
+        menu.classList.toggle('active');
+        document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : 'auto';
+    }
+
+    // Admin Access (Double Click on Footer)
+    document.getElementById('adminTrigger').addEventListener('dblclick', () => {
+        if(prompt("Admin ID:") === "himvantaexpertise@gmail.com" && prompt("Key:") === "Him@2002") {
+            window.location.href = 'admin.html';
+        }
+    });
+</script>
+</body>
+</html>

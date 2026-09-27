@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Privacy Policy | Himvanta Expertise</title>
+
+    <link rel="icon" type="image/jpeg" href="assets/LOGO.jpeg">
+    <link rel="apple-touch-icon" href="assets/LOGO.jpeg">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <style>
+
+        /* ==========================================================
+           HIMVANTA EXPERTISE
+           PRIVACY POLICY
+           Travel • Tourism • Adventure
+           ========================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --himvanta-blue: #132238;
+            --himvanta-blue-light: #1e3a5f;
+            --himvanta-snow: #e8f4f8;
+            --himvanta-snow-light: #f0f7fa;
+
+            --text-dark: #172033;
+            --text-muted: #5d6878;
+
+            --white: #ffffff;
+            --border: #dce7ed;
+
+            --green: #18794e;
+            --green-bg: #f1faf5;
+            --green-border: #bfe5cf;
+
+            --font-body: 'Inter', sans-serif;
+            --font-heading: 'Playfair Display', serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            line-height: 1.8;
+            color: var(--text-dark);
+            background: var(--himvanta-snow-light);
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ==========================================================
+           NAVBAR
+           ========================================================== */
+
+        nav {
+            height: 82px;
+            background: rgba(255, 255, 255, 0.98);
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 6%;
+
+            box-shadow: 0 3px 20px rgba(19, 34, 56, 0.08);
+
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            font-weight: 800;
+
+            color: var(--himvanta-blue);
+        }
+
+        .brand-icon {
+            width: 38px;
+            height: 38px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: var(--himvanta-blue);
+            color: var(--himvanta-snow);
+
+            border-radius: 50%;
+
+            font-size: 0.95rem;
+        }
+
+        .brand span {
+            color: var(--himvanta-blue-light);
+        }
+
+        .home-link {
+            color: var(--himvanta-blue);
+
+            font-size: 0.86rem;
+            font-weight: 700;
+
+            letter-spacing: 0.7px;
+
+            transition: 0.3s ease;
+        }
+
+        .home-link:hover {
+            color: var(--himvanta-blue-light);
+        }
+
+        /* ==========================================================
+           CONTAINER
+           ========================================================== */
+
+        .container {
+            width: min(920px, 92%);
+            margin: 0 auto;
+        }
+
+        /* ==========================================================
+           POLICY HEADER
+           ========================================================== */
+
+        .policy-header {
+            position: relative;
+            overflow: hidden;
+
+            padding: 95px 20px 105px;
+
+            text-align: center;
+
+            color: var(--white);
+
+            background:
+                linear-gradient(
+                    rgba(19, 34, 56, 0.95),
+                    rgba(19, 34, 56, 0.98)
+                );
+        }
+
+        .policy-header::before {
+            content: "";
+
+            position: absolute;
+
+            width: 430px;
+            height: 430px;
+
+            border: 1px solid rgba(232, 244, 248, 0.12);
+
+            border-radius: 50%;
+
+            top: -230px;
+            left: -140px;
+        }
+
+        .policy-header::after {
+            content: "";
+
+            position: absolute;
+
+            width: 540px;
+            height: 540px;
+
+            border: 1px solid rgba(232, 244, 248, 0.08);
+
+            border-radius: 50%;
+
+            right: -200px;
+            bottom: -340px;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .header-kicker {
+            display: inline-block;
+
+            padding: 8px 18px;
+            margin-bottom: 18px;
+
+            border: 1px solid rgba(232, 244, 248, 0.35);
+            border-radius: 50px;
+
+            color: var(--himvanta-snow);
+
+            font-size: 0.75rem;
+            font-weight: 700;
+
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .policy-header h1 {
+            font-family: var(--font-heading);
+
+            font-size: clamp(2.6rem, 6vw, 4.4rem);
+            line-height: 1.15;
+
+            font-weight: 700;
+
+            margin-bottom: 18px;
+        }
+
+        .policy-header h1 span {
+            color: var(--himvanta-snow);
+        }
+
+        .policy-header p {
+            max-width: 650px;
+            margin: 0 auto;
+
+            color: rgba(255, 255, 255, 0.82);
+
+            font-size: 1rem;
+        }
+
+        .policy-tagline {
+            margin-top: 14px !important;
+
+            color: var(--himvanta-snow) !important;
+
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* ==========================================================
+           MAIN CONTENT
+           ========================================================== */
+
+        main {
+            position: relative;
+        }
+
+        .content-wrap {
+            position: relative;
+            z-index: 5;
+
+            margin: -45px auto 60px;
+
+            background: var(--white);
+
+            padding: 55px;
+
+            border-radius: 28px;
+
+            box-shadow:
+                0 20px 60px rgba(19, 34, 56, 0.10);
+        }
+
+        /* ==========================================================
+           INTRO
+           ========================================================== */
+
+        .intro-box {
+            padding: 25px 28px;
+
+            margin-bottom: 45px;
+
+            background: var(--himvanta-snow-light);
+
+            border-left: 5px solid var(--himvanta-blue-light);
+
+            border-radius: 14px;
+        }
+
+        .intro-box p {
+            color: var(--text-muted);
+        }
+
+        /* ==========================================================
+           POLICY SECTIONS
+           ========================================================== */
+
+        .policy-section {
+            margin-bottom: 45px;
+        }
+
+        .policy-section h2 {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            color: var(--himvanta-blue);
+
+            font-family: var(--font-heading);
+
+            font-size: 1.55rem;
+            line-height: 1.3;
+
+            margin-bottom: 18px;
+
+            padding-bottom: 12px;
+
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-number {
+            min-width: 38px;
+            height: 38px;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            background: var(--himvanta-blue);
+
+            color: var(--himvanta-snow);
+
+            border-radius: 50%;
+
+            font-family: var(--font-body);
+
+            font-size: 0.82rem;
+            font-weight: 800;
+        }
+
+        .policy-section p {
+            color: var(--text-muted);
+
+            margin-bottom: 16px;
+        }
+
+        /* ==========================================================
+           POLICY LIST
+           ========================================================== */
+
+        .policy-list {
+            list-style: none;
+
+            margin-top: 15px;
+        }
+
+        .policy-list li {
+            position: relative;
+
+            padding-left: 32px;
+
+            margin-bottom: 15px;
+
+            color: var(--text-muted);
+        }
+
+        .policy-list li i {
+            position: absolute;
+
+            left: 0;
+            top: 4px;
+
+            color: var(--himvanta-blue-light);
+
+            font-size: 0.95rem;
+        }
+
+        /* ==========================================================
+           SECURITY BADGE
+           ========================================================== */
+
+        .security-badge {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+
+            margin: 30px 0;
+
+            padding: 27px;
+
+            background: var(--green-bg);
+
+            border: 1px solid var(--green-border);
+
+            border-radius: 20px;
+        }
+
+        .security-badge-icon {
+            min-width: 62px;
+            height: 62px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #e1f3e9;
+
+            border-radius: 50%;
+
+            color: var(--green);
+
+            font-size: 1.8rem;
+        }
+
+        .security-badge h4 {
+            color: var(--green);
+
+            font-size: 1.05rem;
+            font-weight: 800;
+
+            margin-bottom: 5px;
+        }
+
+        .security-badge p {
+            color: #26724e;
+
+            font-size: 0.92rem;
+
+            margin: 0;
+        }
+
+        /* ==========================================================
+           CONTACT BOX
+           ========================================================== */
+
+        .contact-box {
+            margin-top: 15px;
+
+            padding: 32px;
+
+            text-align: center;
+
+            color: var(--white);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--himvanta-blue),
+                    var(--himvanta-blue-light)
+                );
+
+            border-radius: 22px;
+
+            box-shadow:
+                0 15px 35px rgba(19, 34, 56, 0.15);
+        }
+
+        .contact-icon {
+            width: 55px;
+            height: 55px;
+
+            margin: 0 auto 15px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: rgba(232, 244, 248, 0.14);
+
+            color: var(--himvanta-snow);
+
+            border-radius: 50%;
+
+            font-size: 1.2rem;
+        }
+
+        .contact-box h3 {
+            font-family: var(--font-heading);
+
+            font-size: 1.55rem;
+
+            margin-bottom: 5px;
+        }
+
+        .contact-tagline {
+            color: var(--himvanta-snow);
+
+            font-weight: 600;
+
+            margin-bottom: 20px;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+
+            gap: 8px;
+
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .contact-details a {
+            transition: 0.3s ease;
+        }
+
+        .contact-details a:hover {
+            color: var(--himvanta-snow);
+        }
+
+        /* ==========================================================
+           FOOTER
+           ========================================================== */
+
+        footer {
+            text-align: center;
+
+            padding: 35px 20px 45px;
+
+            color: #788493;
+
+            font-size: 0.84rem;
+        }
+
+        .footer-brand {
+            color: var(--himvanta-blue);
+
+            font-family: var(--font-heading);
+
+            font-size: 1rem;
+            font-weight: 700;
+
+            margin-bottom: 5px;
+        }
+
+        .footer-location {
+            margin-top: 4px;
+        }
+
+        /* ==========================================================
+           RESPONSIVE
+           ========================================================== */
+
+        @media (max-width: 768px) {
+
+            nav {
+                height: 72px;
+                padding: 0 5%;
+            }
+
+            .brand {
+                font-size: 1.2rem;
+            }
+
+            .brand-icon {
+                width: 34px;
+                height: 34px;
+            }
+
+            .policy-header {
+                padding: 75px 20px 90px;
+            }
+
+            .policy-header h1 {
+                font-size: 2.7rem;
+            }
+
+            .content-wrap {
+                padding: 35px 25px;
+
+                margin-top: -35px;
+
+                border-radius: 22px;
+            }
+
+            .policy-section h2 {
+                font-size: 1.35rem;
+            }
+
+            .security-badge {
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            .container {
+                width: 94%;
+            }
+
+            nav {
+                padding: 0 4%;
+            }
+
+            .brand {
+                font-size: 1.02rem;
+            }
+
+            .brand-icon {
+                width: 31px;
+                height: 31px;
+
+                font-size: 0.8rem;
+            }
+
+            .home-link {
+                font-size: 0.72rem;
+            }
+
+            .policy-header {
+                padding: 60px 18px 75px;
+            }
+
+            .policy-header h1 {
+                font-size: 2.15rem;
+            }
+
+            .policy-header p {
+                font-size: 0.9rem;
+            }
+
+            .content-wrap {
+                padding: 28px 20px;
+
+                margin-top: -28px;
+            }
+
+            .intro-box {
+                padding: 20px;
+            }
+
+            .policy-section {
+                margin-bottom: 38px;
+            }
+
+            .policy-section h2 {
+                font-size: 1.18rem;
+            }
+
+            .section-number {
+                min-width: 33px;
+                height: 33px;
+
+                font-size: 0.72rem;
+            }
+
+            .security-badge {
+                flex-direction: column;
+
+                align-items: center;
+
+                text-align: center;
+
+                padding: 24px 18px;
+            }
+
+            .contact-box {
+                padding: 27px 18px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+
+<!-- ==========================================================
+     NAVIGATION
+     ========================================================== -->
+
+<nav>
+
+    <a href="index.html" class="brand">
+
+        <span class="brand-icon">
+            <i class="fas fa-mountain"></i>
+        </span>
+
+        Himvanta <span>Expertise</span>
+
+    </a>
+
+    <a href="index.html" class="home-link">
+        <i class="fas fa-home"></i>
+        HOME
+    </a>
+
+</nav>
+
+
+<!-- ==========================================================
+     HEADER
+     ========================================================== -->
+
+<header class="policy-header">
+
+    <div class="container header-content">
+
+        <span class="header-kicker">
+            Travel • Tourism • Adventure
+        </span>
+
+        <h1>
+            Privacy <span>Policy</span>
+        </h1>
+
+        <p>
+            Your privacy and personal information are handled with care
+            throughout your journey with HIMVANTA EXPERTISE.
+        </p>
+
+        <p class="policy-tagline">
+            Expert-guided Himalayan travel from Srinagar Garhwal
+        </p>
+
+    </div>
+
+</header>
+
+
+<!-- ==========================================================
+     CONTENT
+     ========================================================== -->
+
+<main class="container">
+
+    <div class="content-wrap">
+
+
+        <!-- 1. DATA PROTECTION -->
+
+        <div class="policy-section">
+
+            <h2>
+                <span class="section-number">1</span>
+                Data Protection & Safety
+            </h2>
+
+            <p>
+                At <strong>HIMVANTA EXPERTISE</strong>, we prioritize the
+                safety of your personal information. All customer data
+                collected during the booking process is stored in encrypted
+                databases. We ensure that your information is used solely
+                for trek coordination and permit processing with local
+                authorities.
+            </p>
+
+        </div>
+
+
+        <!-- SECURITY -->
+
+        <div class="security-badge">
+
+            <div class="security-badge-icon">
+                <i class="fas fa-user-shield"></i>
+            </div>
+
+            <div>
+
+                <h4>
+                    No Data Sharing Policy
+                </h4>
+
+                <p>
+                    We strictly guarantee that your
+                    <strong>Phone Number</strong> and personal details will
+                    <strong>never</strong> be shared, sold, or rented to
+                    third-party marketing agencies.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- 2. PAYMENT SECURITY -->
+
+        <div class="policy-section">
+
+            <h2>
+                <span class="section-number">2</span>
+                Payment Security
+            </h2>
+
+            <p>
+                Your financial security is our top concern. We use
+                industry-standard security protocols to handle transactions:
+            </p>
+
+            <ul class="policy-list">
+
+                <li>
+                    <i class="fas fa-lock"></i>
+
+                    <span>
+                        <strong>SSL Encryption:</strong>
+                        All payment sessions are protected via Secure Socket
+                        Layer technology.
+                    </span>
+                </li>
+
+                <li>
+                    <i class="fas fa-shield-halved"></i>
+
+                    <span>
+                        <strong>Secure Gateways:</strong>
+                        We only use verified payment partners such as UPI,
+                        Razorpay, or Direct Bank Transfer.
+                    </span>
+                </li>
+
+                <li>
+                    <i class="fas fa-ban"></i>
+
+                    <span>
+                        <strong>No Card Storage:</strong>
+                        HIMVANTA EXPERTISE does not store your Credit/Debit
+                        card or Bank password details on our servers.
+                    </span>
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <!-- 3. INFORMATION COLLECTED -->
+
+        <div class="policy-section">
+
+            <h2>
+                <span class="section-number">3</span>
+                Information We Collect
+            </h2>
+
+            <p>
+                To provide a smooth Himalayan experience, we collect:
+            </p>
+
+            <ul class="policy-list">
+
+                <li>
+                    <i class="fas fa-check-circle"></i>
+
+                    <span>
+                        Basic Contact — Name, Phone, Email
+                    </span>
+                </li>
+
+                <li>
+                    <i class="fas fa-check-circle"></i>
+
+                    <span>
+                        Government ID — For Forest/Police Permits
+                    </span>
+                </li>
+
+                <li>
+                    <i class="fas fa-check-circle"></i>
+
+                    <span>
+                        Emergency Contact & Medical Info — For your safety
+                    </span>
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <!-- 4. COMMITMENT -->
+
+        <div class="policy-section">
+
+            <h2>
+                <span class="section-number">4</span>
+                Our Commitment
+            </h2>
+
+            <p>
+                We only contact you for trek-related updates, itinerary
+                shares, or safety instructions. We hate spam as much as you
+                do, so you will only receive essential communication from
+                our official team.
+            </p>
+
+        </div>
+
+
+        <!-- CONTACT -->
+
+        <div class="contact-box">
+
+            <div class="contact-icon">
+                <i class="fas fa-envelope"></i>
+            </div>
+
+            <h3>
+                HIMVANTA EXPERTISE
+            </h3>
+
+            <p class="contact-tagline">
+                Travel • Tourism • Adventure
+            </p>
+
+            <div class="contact-details">
+
+                <a href="tel:7895337166">
+                    <i class="fas fa-phone"></i>
+                    7895337166
+                </a>
+
+                <a href="tel:+917409931670">
+                    <i class="fas fa-phone"></i>
+                    +91 74099 31670
+                </a>
+
+                <a href="tel:+918126139669">
+                    <i class="fas fa-phone"></i>
+                    +91 81261 39669
+                </a>
+
+                <a href="mailto:himvantaexpertise@gmail.com">
+                    <i class="fas fa-envelope"></i>
+                    himvantaexpertise@gmail.com
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<!-- ==========================================================
+     FOOTER
+     ========================================================== -->
+
+<footer>
+
+    <div class="footer-brand">
+        HIMVANTA EXPERTISE
+    </div>
+
+    <p>
+        Travel • Tourism • Adventure
+    </p>
+
+    <p class="footer-location">
+        Srinagar Garhwal · Uttarakhand · India
+    </p>
+
+    <p>
+        © 2026 Himvanta Expertise. All rights reserved.
+    </p>
+
+</footer>
+
+
+</body>
+</html>

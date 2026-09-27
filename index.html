@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Himvanta Expertise | Himalayan Treks from Srinagar Garhwal</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/jpeg" href="assets/LOGO.jpeg">
+    <link rel="apple-touch-icon" href="assets/LOGO.jpeg">
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+    <script>
+      const firebaseConfig = {
+       apiKey: "AIzaSyCI9_ihTfDLfAlzplzLaSl_PF0iMwBKbi8",
+  authDomain: "hemvanta-expertise.firebaseapp.com",
+  databaseURL: "https://hemvanta-expertise-default-rtdb.firebaseio.com",
+  projectId: "hemvanta-expertise",
+  storageBucket: "hemvanta-expertise.firebasestorage.app",
+  messagingSenderId: "1089618695023",
+  appId: "1:1089618695023:web:85d7eb950856cca8820e9a",
+      };
+      if (!firebase.apps.length) { firebase.initializeApp(firebaseConfig); }
+      const database = firebase.database();
+    </script>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --p-deep: #132238;
+            --p-navy: #1a2e4a;
+            --p-blue: #1e3a5f;
+            --p-snow: #e8f4f8;
+            --p-snow-2: #f0f7fa;
+            --p-white: #ffffff;
+            --p-font: 'Inter', sans-serif;
+            --heading-font: 'Playfair Display', serif;
+        }
+        body { font-family: var(--p-font); line-height: 1.6; color: var(--p-deep); overflow-x: hidden; background: #fff; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; width: 100%; }
+
+        /* NAVIGATION */
+        nav#navbar { position: fixed; top: 0; width: 100%; height: 90px; display: flex; align-items: center; z-index: 1000; transition: 0.4s ease; background: transparent; }
+        nav#navbar.scrolled { background: var(--p-deep); height: 75px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+        .logo-wrapper { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .logo-circle { width: 50px; height: 50px; border-radius: 50%; overflow: hidden; border: 2px solid var(--p-gold); background: #fff; }
+        .logo-circle img { width: 100%; height: 100%; object-fit: cover; }
+        .brand-name { color: #fff; font-weight: 800; font-size: 1.4rem; }
+        .brand-name span { color: var(--p-snow); }
+        .nav-links { display: flex; list-style: none; gap: 30px; align-items: center; }
+        .nav-links a { text-decoration: none; color: #fff; font-weight: 600; font-size: 0.95rem; }
+        .nav-cta-gold { background: var(--p-snow); color: var(--p-navy) !important; padding: 10px 22px; border-radius: 50px; font-weight: 800 !important; }
+
+        /* HERO */
+        .hero {
+            height: 100vh; min-height: 700px;
+            background: linear-gradient(rgba(30, 30, 45, 0.45), rgba(30, 30, 45, 0.65)), 
+                        url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1500&q=80');
+            background-size: cover; background-position: center; background-attachment: fixed;
+            display: flex; align-items: center; justify-content: center; color: #fff; text-align: center;
+        }
+        .hero-content h1 { font-size: clamp(2.5rem, 8vw, 4.8rem); font-weight: 900; line-height: 1.1; margin-bottom: 25px; }
+        .hero-content .highlight { color: var(--p-snow); }
+        .hero-content p { font-size: 1.3rem; margin-bottom: 40px; opacity: 0.95; max-width: 800px; margin: 0 auto 40px; }
+        .hero-action-btns { display: flex; gap: 20px; justify-content: center; }
+        .btn-primary { background: var(--p-snow); color: var(--p-deep); padding: 18px 36px; border-radius: 12px; text-decoration: none; font-weight: 800; transition: 0.3s; display: inline-block; }
+        .btn-secondary { background: rgba(255,255,255,0.1); color: #fff; padding: 18px 36px; border-radius: 12px; text-decoration: none; font-weight: 700; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); transition: 0.3s; }
+
+        /* SECTIONS */
+        .features-section { padding: 100px 0; background: #fff; }
+        .section-title { font-size: 2.8rem; font-weight: 800; text-align: center; margin-bottom: 60px; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .feature-card { background: #fdfdfd; padding: 50px 40px; border-radius: 25px; transition: 0.4s; border: 1px solid #eee; text-align: center; }
+        .icon-box { width: 80px; height: 80px; background: #fff; border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px; font-size: 2.2rem; color: var(--p-deep); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+
+        .trending-section { padding: 100px 0; background: #f9f9f9; }
+        .package-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; margin-top: 50px; }
+        
+        .trek-card { background: #fff; border-radius: 25px; overflow: hidden; border: 1px solid #eee; transition: 0.3s; box-shadow: 0 10px 30px rgba(0,0,0,0.02); }
+        .trek-img { width: 100%; height: 280px; object-fit: cover; }
+        .trek-body { padding: 30px; }
+        .trek-title { font-size: 1.6rem; font-weight: 800; margin-bottom: 12px; color: var(--p-deep); }
+        .trek-price { color: var(--p-snow); font-size: 1.6rem; font-weight: 800; }
+
+        .browse-all-btn {
+            display: inline-flex; align-items: center; gap: 10px; background: var(--p-snow); color: var(--p-navy) !important;
+            padding: 14px 28px; border-radius: 50px; font-weight: 800; text-transform: uppercase; font-size: 0.85rem; transition: 0.4s; text-decoration: none;
+        }
+
+        /* INSTAGRAM CAROUSEL STYLES */
+        .carousel-section { padding: 80px 0; background: #fff; overflow: hidden; }
+        .carousel-container { display: flex; gap: 20px; overflow-x: auto; padding: 20px 0; scroll-snap-type: x mandatory; scrollbar-width: none; }
+        .carousel-container::-webkit-scrollbar { display: none; }
+        .carousel-item { min-width: 300px; height: 400px; border-radius: 25px; overflow: hidden; position: relative; scroll-snap-align: start; flex-shrink: 0; box-shadow: 0 10px 30px rgba(0,0,0,0.1); cursor: pointer; }
+        .carousel-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .carousel-item:hover img { transform: scale(1.05); }
+        .carousel-badge { position: absolute; top: 20px; left: 20px; background: var(--p-snow); color: var(--p-deep); padding: 5px 12px; border-radius: 50px; font-size: 0.7rem; font-weight: 800; z-index: 10; }
+
+        .dest-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 50px; }
+        .dest-item { height: 450px; border-radius: 30px; overflow: hidden; position: relative; }
+        .dest-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s; }
+        .dest-info { position: absolute; bottom: 0; left: 0; width: 100%; padding: 40px; background: linear-gradient(transparent, rgba(30, 30, 45, 0.9)); color: #fff; }
+
+        /* FOOTER */
+        .main-footer { background: #132238; color: #ffffff; padding: 80px 0 0; margin-top: 100px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 50px; margin-bottom: 60px; }
+        .footer-col h4 { color: #e8f4f8; font-size: 1.2rem; margin-bottom: 25px; position: relative; padding-bottom: 10px; }
+        .footer-col h4::after { content: ''; position: absolute; left: 0; bottom: 0; width: 30px; height: 2px; background: #e8f4f8; }
+        .footer-links { list-style: none; }
+        .footer-links a { color: #ccc; text-decoration: none; transition: 0.3s; font-size: 0.95rem; display: block; margin-bottom: 12px; }
+        .footer-links a:hover { color: #e8f4f8; padding-left: 8px; }
+        .social-links { display: flex; gap: 15px; margin-top: 25px; }
+        .social-links a { width: 45px; height: 45px; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; border-radius: 50%; color: #fff; transition: 0.3s; border: 1px solid rgba(255,255,255,0.1); }
+        .social-links a:hover { background: #e8f4f8; color: #132238; transform: translateY(-5px); }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.05); padding: 30px 0; }
+        .bottom-flex { display: flex; justify-content: space-between; align-items: center; color: #777; font-size: 0.85rem; }
+
+        /* WHATSAPP FLOAT */
+        .whatsapp-float { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background-color: #25d366; color: #FFF; border-radius: 50px; text-align: center; font-size: 30px; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4); z-index: 9999; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: 0.3s; }
+        .whatsapp-float:hover { transform: scale(1.1) rotate(10deg); background-color: #128c7e; }
+
+        @media (max-width: 850px) {
+            nav#navbar, nav#navbar.scrolled { background: #fff !important; height: 75px !important; box-shadow: 0 2px 15px rgba(0,0,0,0.1) !important; }
+            .brand-name, .brand-name span, .nav-links a { color: var(--p-navy) !important; }
+            .hamburger { display: flex !important; }
+            .hamburger .line { background: var(--p-navy) !important; }
+            .nav-links { position: fixed; top: 75px; right: -100%; width: 100%; height: 100vh; background: #fff; flex-direction: column; padding: 50px 0; transition: 0.4s; z-index: 1000; gap: 25px; }
+            .nav-links.active { right: 0; }
+            .package-grid { grid-template-columns: 1fr; }
+            .carousel-item { min-width: 85%; }
+            .bottom-flex { flex-direction: column; gap: 10px; text-align: center; }
+        }
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 100000; }
+        .hamburger .line { width: 28px; height: 3px; background: #fff; border-radius: 10px; transition: 0.3s; }
+        h1, h2, h3, h4 { font-family: var(--heading-font); }
+        .hero { background:
+            linear-gradient(135deg, rgba(19,34,56,.78), rgba(30,58,95,.50)),
+            url(assets/photo-1464822759023-fed622ff2c3b.jpg); }
+        .hero::after { content:""; position:absolute; inset:auto 0 0; height:180px;
+            background:linear-gradient(transparent, #132238); pointer-events:none; }
+        .hero-content { position:relative; z-index:2; }
+        .hero-content .eyebrow { display:inline-block; letter-spacing:.16em; text-transform:uppercase;
+            font-size:.78rem; font-weight:800; padding:9px 16px; border:1px solid rgba(232,244,248,.35);
+            background:rgba(232,244,248,.10); border-radius:999px; margin-bottom:22px; }
+        .hero-content h1 { font-family:var(--heading-font); }
+        .hero-content .highlight { color:#e8f4f8; }
+        .btn-primary { background:#e8f4f8; color:#132238; }
+        .btn-secondary { border-color:rgba(232,244,248,.35); }
+        .section-kicker { text-align:center; color:#1e3a5f; text-transform:uppercase; letter-spacing:.16em;
+            font-size:.75rem; font-weight:800; margin-bottom:10px; }
+        .section-title { font-family:var(--heading-font); color:#132238; }
+        .stats-strip { background:#132238; color:#fff; padding:28px 0; height: 150px; }
+        .stats-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:29px; }
+        .stat { text-align:center; padding:12px; border-right:1px solid rgba(255,255,255,.12); height: 50px; }
+        .stat:last-child { border-right:0; }
+        .stat strong { display:block; font-family:var(--heading-font); font-size:1.8rem; color:#e8f4f8; }
+        .stat span { font-size:.78rem; color:rgba(255,255,255,.72); text-transform:uppercase; letter-spacing:.08em; }
+        .feature-card { box-shadow:0 18px 50px rgba(19,34,56,.07); }
+        .icon-box { color:#1e3a5f; background:#f0f7fa; }
+        .about-section { padding:100px 0; background:#f0f7fa; }
+        .about-grid { display:grid; grid-template-columns:1.15fr .85fr; gap:60px; align-items:center; }
+        .about-copy h2 { font-size:2.8rem; margin-bottom:20px; color:#132238; }
+        .about-copy p { color:#536273; margin-bottom:20px; }
+        .metric-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:15px; }
+        .metric { background:#fff; padding:25px 15px; border-radius:18px; text-align:center; box-shadow:0 10px 30px rgba(19,34,56,.06); }
+        .metric strong { display:block; color:#132238; font-family:var(--heading-font); font-size:1.8rem; }
+        .metric span { font-size:.75rem; color:#64748b; }
+        .badges { display:flex; flex-wrap:wrap; gap:10px; margin-top:25px; }
+        .badge { padding:10px 14px; border-radius:999px; background:#fff; border:1px solid #dbe8ee; font-size:.78rem; font-weight:700; color:#1e3a5f; }
+        .trust-section { padding:90px 0; background:#132238; color:#fff; }
+        .trust-section .section-title { color:#fff; }
+        .trust-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin-top:45px; }
+        .trust-card { padding:30px 22px; border:1px solid rgba(255,255,255,.12); border-radius:20px; background:rgba(255,255,255,.045); }
+        .trust-card i { color:#e8f4f8; font-size:1.5rem; margin-bottom:16px; }
+        .trust-card h3 { margin-bottom:8px; }
+        .trust-card p { color:rgba(255,255,255,.7); font-size:.9rem; }
+        .testimonial-section { padding:100px 0; background:#fff; }
+        .testimonial-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:45px; }
+        .testimonial { padding:30px; border-radius:22px; background:#f0f7fa; border:1px solid #e1edf2; }
+        .testimonial p { color:#536273; font-style:italic; margin-bottom:18px; }
+        .testimonial strong { color:#132238; }
+        .testimonial span { display:block; color:#758396; font-size:.8rem; margin-top:3px; }
+        @media (max-width:850px) {
+            .stats-grid, .trust-grid { grid-template-columns:repeat(2,1fr); }
+            .about-grid, .testimonial-grid { grid-template-columns:1fr; }
+            .stat:nth-child(2) { border-right:0; }
+        }
+        @media (max-width:560px) {
+            .stats-grid, .metric-grid, .trust-grid { grid-template-columns:1fr 1fr; }
+            .hero-content h1 { font-size:2.6rem; }
+        }
+
+    </style>
+</head>
+<body>
+
+<nav id="navbar">
+    <div class="container nav-container">
+        <a href="index.html" class="logo-wrapper">
+            <div class="logo-circle"><img src="assets/LOGO.jpeg" alt="Himvanta Expertise"></div>
+            <span class="brand-name">Himvanta <span>Expertise</span></span>
+        </a>
+        <ul class="nav-links" id="mainMenu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="packages.html">Packages</a></li>
+            <li><a href="about.html">Our Story</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="blogs.html">Stories</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="tel:+917895337166" class="nav-cta-gold">Call Us</a></li>
+        </ul>
+        <div class="hamburger" id="navTrigger" onclick="togglePeaksMenu()">
+            <div class="line"></div><div class="line"></div><div class="line"></div>
+        </div>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="hero-content">
+        <div class="eyebrow">Srinagar Garhwal · Uttarakhand · India</div>
+        <h1>Expert-guided <span class="highlight">Himalayan Treks</span> from Himvanta Expertise</h1>
+        <p>Go deeper into the Himalayas with local expertise, small groups, thoughtful planning and a safety-first approach.</p>
+        <div class="hero-action-btns">
+            <a href="packages.html" class="btn-primary">Explore Himalayan Treks</a>
+            <a href="tel:+917895337166" class="btn-secondary">Talk to an Expert</a>
+        </div>
+    </div>
+</section>
+<section class="features-section">
+    <div class="container">
+        <h2 class="section-title">Why Himvanta Expertise?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="icon-box"><i class="fas fa-map-marked-alt"></i></div>
+                <h3>Local, Not Packaged</h3>
+                <p>Treks shaped by people who know Srinagar Garhwal and the surrounding Himalayan routes firsthand.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon-box"><i class="fas fa-user-shield"></i></div>
+                <h3>Full Safety Setup</h3>
+                <p>Wilderness-first-aid awareness, careful planning and a safety-first approach on every journey.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon-box"><i class="fas fa-leaf"></i></div>
+                <h3>Leave No Trace</h3>
+                <p>We travel responsibly and support local conservation so the mountains stay wild and beautiful.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="trending-section">
+    <div class="container">
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:50px; flex-wrap:wrap; gap:20px;">
+            <div>
+                <h2 style="font-size: 2.8rem; font-weight: 800;">Himalayan Treks</h2>
+                <p style="color: #666;">Explore thoughtfully guided routes across Uttarakhand.</p>
+            </div>
+            <a href="packages.html" class="browse-all-btn">Browse All <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div id="journeyDisplay" class="package-grid"></div>
+    </div>
+</section>
+
+<section class="carousel-section">
+    <div class="container">
+        <h2 style="font-size: 2.2rem; font-weight: 800; margin-bottom: 20px;"align="center">Himalayan <span style="color:var(--p-gold)">Stories</span></h2>
+        <div class="carousel-container" id="itpCarousel">
+            <div style="padding: 20px;">Loading Himalayan stories...</div>
+        </div>
+    </div>
+</section>
+
+<section class="features-section">
+    <div class="container">
+        <div class="section-kicker">The Himalayan Canvas</div>
+        <h2 class="section-title">Routes & Places We Explore</h2>
+        <div class="dest-grid">
+            <div class="dest-item"><img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1000&q=80" alt="Valley of Flowers"><div class="dest-info"><h3>Valley of Flowers</h3></div></div>
+            <div class="dest-item"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1000&q=80" alt="Ruari Pass"><div class="dest-info"><h3>Ruari Pass</h3></div></div>
+            <div class="dest-item"><img src="https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1000&q=80" alt="Kedarnath"><div class="dest-info"><h3>Kedarnath</h3></div></div>
+            <div class="dest-item"><img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1000&q=80" alt="Niti Valley"><div class="dest-info"><h3>Niti Valley</h3></div></div>
+            <div class="dest-item"><img src="https://images.unsplash.com/photo-1464278533981-50106e6176b1?auto=format&fit=crop&w=1000&q=80" alt="Dhamar Shen Bugyal"><div class="dest-info"><h3>Dhamar Shen Bugyal</h3></div></div>
+            <div class="dest-item"><img src="https://images.unsplash.com/photo-1518002054494-3a6f94352e9d?auto=format&fit=crop&w=1000&q=80" alt="Badrinath"><div class="dest-info"><h3>Badrinath & Char Dham</h3></div></div>
+        </div>
+    </div>
+</section>
+
+
+<section class="about-section">
+    <div class="container about-grid">
+        <div class="about-copy">
+            <div class="section-kicker" style="text-align:left;">About Himvanta Expertise</div>
+            <h2>Local knowledge. Real mountains. Thoughtful journeys.</h2>
+            <p>Based in Srinagar Garhwal, Himvanta Expertise brings a local perspective to Himalayan trekking. We keep groups small, plan carefully and focus on authentic mountain experiences rather than packaged travel.</p>
+            <p>Our best trekking seasons are <strong>October–November</strong> and <strong>April–June</strong>.</p>
+            <div class="badges">
+                <span class="badge">🏔 IMF Certified Guide</span>
+                <span class="badge">🩺 Wilderness First Aid</span>
+                <span class="badge">🌿 Local Conservation Partner</span>
+            </div>
+        </div>
+        <div class="metric-grid">
+            <div class="metric"><strong>8</strong><span>Years Guiding</span></div>
+            <div class="metric"><strong>12</strong><span>Trek Routes</span></div>
+            <div class="metric"><strong>200+</strong><span>Happy Trekkers</span></div>
+        </div>
+    </div>
+</section>
+
+<section class="trust-section">
+    <div class="container">
+        <div class="section-kicker" style="color:#e8f4f8;">Our Approach</div>
+        <h2 class="section-title">Why trek with Himvanta?</h2>
+        <div class="trust-grid">
+            <div class="trust-card"><i class="fas fa-users"></i><h3>Small Groups Only</h3><p>Maximum group size of 20 for a more personal and manageable trail experience.</p></div>
+            <div class="trust-card"><i class="fas fa-compass"></i><h3>Local, Not Packaged</h3><p>Routes and experiences shaped around local Himalayan knowledge.</p></div>
+            <div class="trust-card"><i class="fas fa-kit-medical"></i><h3>Full Safety Setup</h3><p>Prepared journeys with safety planning and wilderness-first-aid capability.</p></div>
+            <div class="trust-card"><i class="fas fa-leaf"></i><h3>Leave No Trace</h3><p>Responsible trekking with respect for mountain communities and ecosystems.</p></div>
+        </div>
+    </div>
+</section>
+
+<section class="testimonial-section">
+    <div class="container">
+        <div class="section-kicker">Trekkers' Words</div>
+        <h2 class="section-title">Experiences from the Trail</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial"><p>“A memorable Himalayan experience with thoughtful local guidance.”</p><strong>Priya S.</strong><span>Mumbai</span></div>
+            <div class="testimonial"><p>“The journey felt personal, well planned and connected to the mountains.”</p><strong>Rajan & Meena K.</strong><span>Pune</span></div>
+            <div class="testimonial"><p>“Great local perspective and a genuinely immersive trekking experience.”</p><strong>Arjun T.</strong><span>Bangalore</span></div>
+        </div>
+    </div>
+</section>
+
+<a href="https://wa.me/917895337166?text=Hi%20Himvanta%20Expertise%2C%20I%20want%20to%20know%20about%20your%20treks." class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<footer class="main-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div style="font-size: 2rem; font-weight: 800; margin-bottom: 20px;">
+                    Himvanta <span style="color:#e8f4f8;">Expertise</span>
+                </div>
+                <p style="color:#aaa; line-height:1.7;">Expert-guided Himalayan treks from Srinagar Garhwal. Local knowledge, thoughtful planning and responsible mountain travel.</p>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/intothepeaks.official" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/@Intothepeaks.official" target="_blank"><i class="fab fa-youtube"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="packages.html">Trek Catalog</a></li>
+                    <li><a href="gallery.html">Photo Archive</a></li>
+                    <li><a href="blogs.html">Trek Diaries</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Our Policies</h4>
+                <ul class="footer-links">
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms & Conditions</a></li>
+                    <li><a href="cancellation.html">Cancellation Policy</a></li>
+                    <li><a href="refund.html">Refund Policy</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>The Basecamp</h4>
+                <p style="color:#aaa; margin-bottom: 15px;">
+                    <i class="fas fa-map-marker-alt" style="color:#e8f4f8; margin-right:10px;"></i>
+                    Srinagar Garhwal · Uttarakhand · India
+                </p>
+                <p style="color:#aaa;">
+                    <i class="fas fa-phone" style="color:#e8f4f8; margin-right:10px;"></i>
+                    +91 78953 37166 · +91 74099 31670 · +91 81261 39669
+                </p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="bottom-flex">
+                <p id="adminTrigger" style="cursor: pointer;">© 2026 Himvanta Expertise. All rights reserved.</p>
+                <p>Made with ❤️ in Srinagar Garhwal</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    window.addEventListener('scroll', () => {
+        const nav = document.getElementById('navbar');
+        window.scrollY > 50 ? nav.classList.add('scrolled') : nav.classList.remove('scrolled');
+    });
+
+    function togglePeaksMenu() {
+        const menu = document.getElementById('mainMenu');
+        menu.classList.toggle('active');
+        document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : 'auto';
+    }
+
+    function extractYTID(url) {
+        if(!url) return null;
+        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|shorts\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+        const match = url.match(regExp);
+        return (match && match[2].length === 11) ? match[2] : null;
+    }
+
+    function loadCarousel() {
+        const carousel = document.getElementById('itpCarousel');
+        database.ref('itp_data/gallery').limitToLast(8).on('value', (snap) => {
+            const data = snap.val();
+            carousel.innerHTML = "";
+            if(data) {
+                Object.keys(data).forEach(id => {
+                    const item = data[id];
+                    const ytId = extractYTID(item.yt || item.url);
+                    let thumb = ytId ? `https://img.youtube.com/vi/${ytId}/hqdefault.jpg` : (item.url || 'assets/LOGO.jpeg');
+                    carousel.innerHTML += `
+                        <div class="carousel-item" onclick="window.location.href='gallery.html'">
+                            <div class="carousel-badge">${ytId ? 'VIDEO' : 'STORY'}</div>
+                            <img src="${thumb}" onerror="this.src='assets/LOGO.jpeg'">
+                        </div>`;
+                });
+            }
+        });
+    }
+
+    function loadTrendingTreks() {
+        const display = document.getElementById('journeyDisplay');
+        display.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 50px;"><i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: #e8f4f8;"></i></div>';
+        database.ref('itp_data/tours').limitToLast(2).on('value', (snap) => {
+            const data = snap.val();
+            display.innerHTML = "";
+            if(data) {
+                Object.keys(data).reverse().forEach(id => {
+                    const trek = data[id];
+                    display.innerHTML += `
+                        <div class="trek-card">
+                            <img src="${trek.img || 'assets/LOGO.jpeg'}" class="trek-img">
+                            <div class="trek-body">
+                                <h3 class="trek-title">${trek.title}</h3>
+                                <div style="display:flex; justify-content:space-between; align-items:center;">
+                                    <div class="trek-price">₹${Number(trek.price).toLocaleString('en-IN')}</div>
+                                    <a href="itinerary.html?id=${id}" class="btn-primary" style="padding:10px 20px; font-size:0.85rem; border-radius:8px;">Plan Journey</a>
+                                </div>
+                            </div>
+                        </div>`;
+                });
+            }
+        });
+    }
+
+    document.getElementById('adminTrigger').addEventListener('dblclick', () => {
+        if(prompt("Admin ID:") === "himvantaexpertise@gmail.com" && prompt("Key:") === "Him@2002") window.location.href = 'admin.html';
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        loadTrendingTreks();
+        loadCarousel();
+    });
+</script>
+</body>
+</html>
