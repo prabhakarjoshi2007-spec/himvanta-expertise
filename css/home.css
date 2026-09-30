@@ -1,0 +1,993 @@
+/* ==========================================================================
+   HIMVANTA EXPERTISE - SUPREME HOME ARCHITECTURE
+   Location: Srinagar Garhwal, Uttarakhand
+   Sections: Hero, Features, Trending, Destinations, Carousel, Footer
+   Style: Premium Himalayan Travel / Stable Responsive Layout
+   ========================================================================== */
+
+
+/* ==========================================================================
+   0. HOME PAGE FOUNDATION & CSS VARIABLES
+   ========================================================================== */
+
+:root {
+    --p-deep: #132238;
+    --p-navy: #1a2e4a;
+    --p-blue: #1e3a5f;
+    --p-snow: #e8f4f8;
+    --p-snow-2: #f0f7fa;
+    --p-white: #ffffff;
+    --p-gold: #e8f4f8;
+    --p-font: 'Inter', sans-serif;
+    --heading-font: 'Playfair Display', serif;
+    --transition: all 0.3s ease;
+    --container: 1200px;
+    --nav-h: 90px;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--p-font);
+    line-height: 1.6;
+    color: var(--p-deep);
+    background: var(--p-white);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 100%;
+}
+
+
+/* ==========================================================================
+   1. NAVIGATION BAR
+   ========================================================================== */
+
+nav#navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--nav-h);
+    display: flex;
+    align-items: center;
+    z-index: 1000;
+    transition: var(--transition);
+    background: transparent;
+}
+
+nav#navbar.scrolled {
+    background: var(--p-deep);
+    height: 75px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.logo-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none !important;
+}
+
+.logo-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid var(--p-snow);
+    background: var(--p-white);
+    flex-shrink: 0;
+    box-shadow: 0 4px 15px rgba(19, 34, 56, 0.12);
+    transition: var(--transition);
+}
+
+nav#navbar.scrolled .logo-circle {
+    width: 44px;
+    height: 44px;
+}
+
+.logo-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.brand-name {
+    color: var(--p-white);
+    font-weight: 800;
+    font-size: 1.4rem;
+    letter-spacing: -0.5px;
+}
+
+.brand-name span {
+    color: var(--p-snow);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+    align-items: center;
+}
+
+.nav-links a {
+    color: var(--p-white);
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: var(--transition);
+}
+
+.nav-links a:hover {
+    color: var(--p-snow);
+}
+
+.nav-cta-gold {
+    background: var(--p-snow) !important;
+    color: var(--p-navy) !important;
+    padding: 10px 22px;
+    border-radius: 50px;
+    font-weight: 800 !important;
+    box-shadow: 0 4px 15px rgba(232, 244, 248, 0.2);
+    transition: var(--transition) !important;
+}
+
+.nav-cta-gold:hover {
+    background: var(--p-white) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
+}
+
+/* Mobile Navigation Hamburger */
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 6px;
+    z-index: 100000;
+}
+
+.hamburger .line {
+    width: 28px;
+    height: 3px;
+    background: var(--p-white);
+    border-radius: 3px;
+    transition: var(--transition);
+}
+
+
+/* ==========================================================================
+   2. HERO SECTION
+   ========================================================================== */
+
+.hero {
+    width: 100%;
+    min-height: 200vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 0;
+    z-index: 5;
+    text-align: center;
+    background:
+        linear-gradient(
+            rgba(19, 34, 56, 0.65),
+            rgba(19, 34, 56, 0.75)
+        ),
+        url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1800&q=85')
+        center center / cover no-repeat fixed;
+}
+
+.hero-container,
+.hero-content {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 100px 20px 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation: fadeInUp 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.hero h1,
+.hero-content h1 {
+    font-family: var(--heading-font);
+    font-size: clamp(2.5rem, 7vw, 5rem);
+    line-height: 1.1;
+    margin: 0 0 22px 0;
+    font-weight: 800;
+    color: var(--p-white);
+    letter-spacing: -1px;
+    text-shadow: 0 15px 40px rgba(0, 0, 0, 0.45);
+    max-width: 900px;
+}
+
+.hero h1 .highlight,
+.hero h1 span {
+    color: var(--p-snow);
+}
+
+.hero p,
+.hero-content p {
+    margin: 0 auto 38px;
+    max-width: 720px;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.75;
+    font-size: 1.15rem;
+}
+
+.hero-action-btns {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--p-snow) !important;
+    color: var(--p-deep) !important;
+    padding: 18px 38px;
+    min-height: 58px;
+    border-radius: 14px;
+    border: 1px solid var(--p-snow);
+    font-weight: 800;
+    box-shadow: 0 15px 35px rgba(19, 34, 56, 0.25);
+    transition: var(--transition);
+}
+
+.btn-primary:hover {
+    background: var(--p-white) !important;
+    color: var(--p-deep) !important;
+    transform: translateY(-4px);
+    box-shadow: 0 20px 45px rgba(19, 34, 56, 0.35);
+}
+
+.btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--p-white) !important;
+    font-weight: 700;
+    border: 1px solid rgba(232, 244, 248, 0.45);
+    border-radius: 14px;
+    padding: 17px 35px;
+    min-height: 58px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    transition: var(--transition);
+}
+
+.btn-secondary:hover {
+    color: var(--p-deep) !important;
+    background: var(--p-snow);
+    border-color: var(--p-snow);
+    transform: translateY(-3px);
+}
+
+.stats-section {
+  position: relative;
+  z-index: 10;                  /* Ensures it sits above the hero image background */
+  margin-top: -60px;            /* Pulls the section up over the hero image */
+  background: #0d1b2a;          /* Dark background matching your dark theme */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;          /* Gives a modern floating card look */
+  padding: 35px 20px;           /* Increases vertical height */
+  max-width: 1050px;            /* Keeps it nicely centered and inset */
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.4); /* Smooth shadow transition */
+}
+/* Stat numbers (13+, 2 Years, 4,329m, 100%) */
+.stat-number {
+  font-size: 2.75rem;          /* Make numbers significantly larger */
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 6px;
+  line-height: 1;
+}
+
+/* Stat labels */
+.stat-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #a0aec0;
+  text-transform: uppercase;
+}
+/* Update your main stats section wrapper */
+.stats-section, 
+.hero-stats, 
+.stats-bar { 
+  position: relative;
+  z-index: 20;                     /* Keeps it above the hero image background */
+  margin-top: -65px !important;    /* Pulls the card UP to cover the bottom edge of hero image */
+  
+  /* Give it a distinct dark floating card style */
+  background-color: #0b1329 !important; 
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;            /* Rounded corners */
+  
+  /* Add generous height and padding */
+  padding: 40px 30px !important;
+  
+  /* Center and restrain width so it looks like a floating container */
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  
+  /* Elevate it over the hero background with shadow */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+/* Larger, bold stat numbers */
+.stat-number, 
+.stats-item h3, 
+.stats-item h2 {
+  font-size: 3.2rem !important;    /* Significantly larger numbers */
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+/* Stat descriptions/labels */
+.stat-label, 
+.stats-item p, 
+.stats-item span {
+  font-size: 0.85rem !important;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #94a3b8;
+}
+/* Ensure the parent hero wrapper doesn't crop the overlapping stats card */
+.hero-section, 
+.hero-container {
+  overflow: visible !important; 
+}
+/* ==========================================================================
+   3. SECTION TITLES & HEADINGS
+   ========================================================================== */
+
+.section-title {
+    font-family: var(--heading-font);
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    text-align: center;
+    color: var(--p-deep);
+    margin-bottom: 20px;
+}
+
+
+/* ==========================================================================
+   4. FEATURES SECTION (WHY US)
+   ========================================================================== */
+
+.features-section {
+    padding: 110px 0;
+    background: var(--p-white);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 40px;
+    margin-top: 55px;
+}
+
+.feature-card {
+    background: var(--p-snow-2);
+    padding: 50px 35px;
+    min-height: 320px;
+    border-radius: 28px;
+    border: 1px solid #e2e8f0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: var(--transition);
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    background: var(--p-white);
+    border-color: rgba(30, 58, 95, 0.2);
+    box-shadow: 0 25px 60px rgba(19, 34, 56, 0.1);
+}
+
+.icon-box {
+    width: 76px;
+    height: 76px;
+    background: var(--p-snow);
+    color: var(--p-deep);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.1rem;
+    margin-bottom: 28px;
+    border: 1px solid #d9e9ef;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+    transition: var(--transition);
+}
+
+.feature-card:hover .icon-box {
+    background: var(--p-deep);
+    color: var(--p-snow);
+    transform: translateY(-4px);
+}
+
+.feature-card h3 {
+    font-family: var(--heading-font);
+    font-size: 1.55rem;
+    line-height: 1.25;
+    color: var(--p-deep);
+    margin-bottom: 14px;
+}
+
+.feature-card p {
+    color: #4a5568;
+    font-size: 0.98rem;
+    line-height: 1.7;
+    margin: 0;
+}
+
+
+/* ==========================================================================
+   5. TRENDING ADVENTURES / PACKAGES SECTION
+   ========================================================================== */
+
+.trending-section {
+    padding: 110px 0;
+    background: #f8fafc;
+}
+
+.package-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 40px;
+    margin-top: 50px;
+}
+
+.package-card,
+.trek-card {
+    background: var(--p-white);
+    border-radius: 28px;
+    overflow: hidden;
+    border: 1px solid #e7edf2;
+    box-shadow: 0 15px 45px rgba(19, 34, 56, 0.06);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.package-card:hover,
+.trek-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 65px rgba(19, 34, 56, 0.12);
+}
+
+.card-img-wrap,
+.trek-img-wrap {
+    width: 100%;
+    height: 280px;
+    overflow: hidden;
+    position: relative;
+    background: var(--p-deep);
+}
+
+.card-img-wrap img,
+.trek-img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.package-card:hover .card-img-wrap img,
+.trek-card:hover .trek-img {
+    transform: scale(1.08);
+}
+
+.trek-body {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.trek-title {
+    font-family: var(--heading-font);
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+    color: var(--p-deep);
+}
+
+.trek-price {
+    color: var(--p-navy);
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-top: auto;
+    padding-top: 15px;
+}
+
+.browse-all-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--p-snow);
+    color: var(--p-navy) !important;
+    padding: 14px 32px;
+    border-radius: 50px;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    transition: var(--transition);
+    margin-top: 50px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.browse-all-btn:hover {
+    background: var(--p-deep);
+    color: var(--p-white) !important;
+    transform: translateY(-3px);
+}
+
+
+/* ==========================================================================
+   6. INSTAGRAM / MEDIA CAROUSEL SECTION
+   ========================================================================== */
+
+.carousel-section {
+    padding: 100px 0;
+    background: var(--p-white);
+    overflow: hidden;
+}
+
+.carousel-container {
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+    padding: 25px 5px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+}
+
+.carousel-container::-webkit-scrollbar {
+    display: none;
+}
+
+.carousel-item {
+    min-width: 320px;
+    height: 420px;
+    border-radius: 28px;
+    overflow: hidden;
+    position: relative;
+    scroll-snap-align: start;
+    flex-shrink: 0;
+    box-shadow: 0 12px 35px rgba(19, 34, 56, 0.1);
+    cursor: pointer;
+    background: var(--p-deep);
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.carousel-item:hover img {
+    transform: scale(1.07);
+}
+
+.carousel-badge {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: var(--p-snow);
+    color: var(--p-deep);
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    z-index: 10;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+
+/* ==========================================================================
+   7. DESTINATIONS SECTION
+   ========================================================================== */
+
+.destinations-section {
+    padding: 110px 0;
+    background: var(--p-snow-2);
+}
+
+.dest-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 35px;
+    margin-top: 55px;
+}
+
+.dest-item {
+    position: relative;
+    height: 520px;
+    overflow: hidden;
+    border-radius: 32px;
+    background: var(--p-deep);
+    box-shadow: 0 15px 40px rgba(19, 34, 56, 0.12);
+}
+
+.dest-item img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    transition: transform 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.dest-item:hover img {
+    transform: scale(1.08);
+}
+
+.dest-info {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 40px;
+    color: var(--p-white);
+    background: linear-gradient(
+        to top,
+        rgba(19, 34, 56, 0.92) 0%,
+        rgba(19, 34, 56, 0.55) 40%,
+        transparent 100%
+    );
+}
+
+.dest-info h3 {
+    font-family: var(--heading-font);
+    color: var(--p-white);
+    font-size: 2rem;
+    line-height: 1.2;
+    margin-bottom: 10px;
+}
+
+.dest-info p {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.95rem;
+    line-height: 1.65;
+    margin: 0;
+}
+
+
+/* ==========================================================================
+   8. FOOTER SECTION
+   ========================================================================== */
+
+.main-footer {
+    background: var(--p-deep);
+    color: var(--p-white);
+    padding: 90px 0 0;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 50px;
+    margin-bottom: 60px;
+}
+
+.footer-col h4 {
+    color: var(--p-snow);
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-col h4::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 35px;
+    height: 2px;
+    background: var(--p-snow);
+}
+
+.footer-links {
+    list-style: none;
+}
+
+.footer-links a {
+    color: #cbd5e1;
+    text-decoration: none;
+    transition: var(--transition);
+    font-size: 0.95rem;
+    display: inline-block;
+    margin-bottom: 12px;
+}
+
+.footer-links a:hover {
+    color: var(--p-snow);
+    transform: translateX(6px);
+}
+
+.social-links {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.social-links a {
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--p-white);
+    font-size: 1.2rem;
+    transition: var(--transition);
+}
+
+.social-links a:hover {
+    background: var(--p-snow);
+    color: var(--p-deep);
+    border-color: var(--p-snow);
+    transform: translateY(-5px);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 30px 0;
+}
+
+.bottom-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #94a3b8;
+    font-size: 0.88rem;
+}
+
+
+/* ==========================================================================
+   9. WHATSAPP FLOATING BUTTON
+   ========================================================================== */
+
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background-color: #25d366;
+    color: #ffffff;
+    border-radius: 50px;
+    font-size: 30px;
+    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1) rotate(10deg);
+    background-color: #128c7e;
+}
+
+
+/* ==========================================================================
+   10. KEYFRAME ANIMATIONS
+   ========================================================================== */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ==========================================================================
+   11. RESPONSIVE BREAKPOINTS
+   ========================================================================== */
+
+/* Laptop / Medium Desktop */
+@media (max-width: 1100px) {
+    .features-grid,
+    .dest-grid,
+    .package-grid {
+        gap: 25px;
+    }
+
+    .feature-card {
+        padding: 40px 25px;
+    }
+
+    .dest-item {
+        height: 460px;
+    }
+}
+
+/* Tablet Layout */
+@media (max-width: 1024px) {
+    .features-grid,
+    .dest-grid,
+    .package-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .dest-item {
+        height: 480px;
+    }
+}
+
+/* Mobile & Small Tablet */
+@media (max-width: 850px) {
+    nav#navbar,
+    nav#navbar.scrolled {
+        background: var(--p-white) !important;
+        height: 75px !important;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1) !important;
+    }
+
+    .brand-name {
+        color: var(--p-navy) !important;
+    }
+
+    .brand-name span {
+        color: var(--p-blue) !important;
+    }
+
+    .logo-circle {
+        border-color: var(--p-navy);
+    }
+
+    .hamburger {
+        display: flex !important;
+    }
+
+    .hamburger .line {
+        background: var(--p-navy) !important;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 75px;
+        right: -100%;
+        width: 100%;
+        height: calc(100vh - 75px);
+        background: var(--p-white);
+        flex-direction: column;
+        padding: 50px 0;
+        transition: 0.4s ease;
+        z-index: 1000;
+        gap: 25px;
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .nav-links a {
+        color: var(--p-navy) !important;
+        font-size: 1.1rem;
+    }
+
+    .hero {
+        background-attachment: scroll;
+    }
+
+    .package-grid,
+    .features-grid,
+    .dest-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .carousel-item {
+        min-width: 85%;
+        height: 380px;
+    }
+
+    .bottom-flex {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+    }
+}
+
+/* Mobile Portrait */
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-action-btns {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        width: 100%;
+        max-width: 320px;
+    }
+
+    .dest-item {
+        height: 400px;
+    }
+
+    .dest-info {
+        padding: 25px;
+    }
+
+    .feature-card {
+        padding: 35px 20px;
+    }
+}
